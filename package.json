@@ -1,7 +1,7 @@
 {
-  "name": "ecom",
+  "name": "webapp",
   "version": "1.0.0",
-  "description": "ecom api",
+  "description": "webapp api",
   "main": "server.js",
   "type": "module",
   "scripts": {
