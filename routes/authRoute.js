@@ -11,9 +11,15 @@ import {
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import multer from "multer";
 
-const upload = multer({ dest: "uploads/" });
+// const upload = multer({ dest: "uploads/" });
+
+const storage = multer.memoryStorage();
+
+const upload = multer({ storage: storage });
 //router object
 const router = express.Router();
+
+
 
 //routing
 //REGISTER || METHOD POST
