@@ -62,12 +62,13 @@ export const getAllVoterController = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 //get all Voters
 export const getAllVotersController = async (req, res) => {
   const collection = mongoose.connection.collection("datas");
 
   const { page = 1 } = req.query;
-  const limit = 1000; // Set the limit to 100 items per page
+  const limit = 100; // Set the limit to 100 items per page
   const skip = (parseInt(page) - 1) * limit;
 
   try {
@@ -222,13 +223,14 @@ export const getVoterDetailController = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-// Update voter details controller
+// updateVoterDetailsController.js
+
 export const updateVoterDetailsController = async (req, res) => {
   const collection = mongoose.connection.collection("datas");
 
   try {
     const { slug } = req.params;
-    const { DOB, MOBILE_NO, voted, died } = req.body;
+    const { DOB, MOBILE_NO, voted, died, surveyOption } = req.body;
 
     const updateFields = {};
     if (DOB) {
@@ -242,6 +244,9 @@ export const updateVoterDetailsController = async (req, res) => {
     }
     if (typeof died === "boolean") {
       updateFields.died = died;
+    }
+    if (surveyOption) { // Include survey option in the update fields
+      updateFields.surveyOption = surveyOption;
     }
 
     const updatedVoter = await collection.findOneAndUpdate(

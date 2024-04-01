@@ -34,6 +34,6 @@ router.get("/village/:slug", getVillageVottersController);
 
 router.get("/family", getAllFamiliesController);
 
-router.get("/family/:slug", getFamilyVottersController );
+router.get("/family/:slug", getFamilyVottersController);
 
 export default router;
